@@ -8,8 +8,8 @@ import java.util.stream.Stream;
  */
 public class Part6_Reduce_Stream {
     public static void main(String[] args) {
-//        reduceOverLoad_1();
-//        reduceOverLoad_2();
+        reduceOverLoad_1();
+        reduceOverLoad_2();
         reduceOverLoad_3();
     }
 

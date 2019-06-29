@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 /**
  * Simply to express the count,max,min,findAny.anyMatch,allMatch,noneMatch,findFirst
  */
-public class Part4_Polymerization_Stream {
+public class Part4_MatchElement_Stream {
     public static void main(String[] args) {
         maxMixCount();
         match();

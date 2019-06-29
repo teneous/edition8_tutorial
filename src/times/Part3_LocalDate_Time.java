@@ -1,15 +1,14 @@
 package src.times;
 
-import java.time.Clock;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.time.ZoneId;
+import java.util.Date;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Part3_LocalDate_Time {
     public static void main(String[] args) {
         localDate();
         localDateCaculate();
+        getFirstOrLastDayMonth();
     }
 
     public static void localDate() {
@@ -60,5 +59,15 @@ public class Part3_LocalDate_Time {
         System.out.println("1999 is before 2000--->" + now.isBefore(leap));
         //period
         Period between = Period.between(now, LocalDate.now().plusYears(1L));//plus 1 year 0 months 0 days
+    }
+
+
+    public static void getFirstOrLastDayMonth(){
+        YearMonth ym = YearMonth.parse("time", DateTimeFormatter.ofPattern("yyyy-mm"));
+        LocalDate start = ym.atDay(1);//获取这个月第一天
+        LocalDate end = ym.atEndOfMonth();//获取这个月最后一天
+        //转换为date
+        Date startDate = Date.from(start.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(end.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 }

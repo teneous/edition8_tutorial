@@ -2,6 +2,7 @@ package src.times;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -10,6 +11,7 @@ public class Part5_Formatter_Time {
         dateTimeFormatter();
 
         System.out.println(((Date) (DateTimeFormatter.ofPattern("yyyy-MM-dd").parse("2018-05-02"))).getClass());
+        yearMothFormatter();
     }
 
     public static void dateTimeFormatter() {
@@ -24,5 +26,15 @@ public class Part5_Formatter_Time {
         LocalDate second = LocalDate.parse("1994$07$01", DateTimeFormatter.ofPattern("yyyy$MM$dd"));
         System.out.println("first.equals(second)" + first.equals(second));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    }
+
+    /**
+     * 最近发现的一个问题
+     * 如果想要"yyyy-mm"这种结构的话不可使用localdate.parse
+     */
+    public static void yearMothFormatter() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-mm");
+        YearMonth parse = YearMonth.parse("2018-03", dateTimeFormatter);
+        System.out.println(parse.getYear() + "-" + parse.getMonth());
     }
 }

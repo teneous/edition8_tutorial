@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 /**
- * grouping by and partition by
+ * 分组重点！！
  */
 public class Part8_Group_Stream {
     public static void main(String[] args) {
@@ -50,6 +50,7 @@ public class Part8_Group_Stream {
         paralleMap.forEach((k, v) -> System.out.println("k-->" + k + "  v--->" + v));
     }
 
+
     public static void partitionBy() {
         List<Student> studentList = Part7_Collect_Stream.prepareTestData();
         //map的k只会是true或者false
@@ -58,8 +59,9 @@ public class Part8_Group_Stream {
         partionMap.forEach((k, v) -> System.out.println("k-->" + k + "  v--->" + v));
     }
 
+
     /**
-     * 如果你想改变value的值,试试这个
+     * 如果你想对map中的Value进行在处理
      */
     public static void donwStreamDemo() {
         List<Student> studentList = Part7_Collect_Stream.prepareTestData();
@@ -81,7 +83,7 @@ public class Part8_Group_Stream {
         jdk8StuIntSummary.forEach((k, v) -> System.out.println("k-->" + k + "  v--->" + v.toString())); //value --->IntSummaryStatistics
 
         System.out.println("####################mapping########################");
-        //v为每个k集合中,编号最大的
+        //先按照年龄分组，在获取每个分组中，编号最大的
         Map<Integer, Optional<Student>> jdk8StuMaxBy = studentList.stream()
                 .collect(Collectors.groupingBy(Student::getAge, Collectors.maxBy((stu1, stu2) -> {
                     int no1 = Integer.parseInt(stu1.getNo());
@@ -95,5 +97,10 @@ public class Part8_Group_Stream {
         Map<Integer, List<String>> jdk8StuMappingBy = studentList.stream()
                 .collect(Collectors.groupingBy(Student::getAge, Collectors.mapping(Student::getName, Collectors.toList())));
         jdk8StuMappingBy.forEach((k, v) -> System.out.println("k-->" + k + "  v--->" + v));
+
+        //如果想要获得Map<T,Map<X,R>>这种结构可使用如下方法
+        Map<Integer, Map<String, List<Student>>> doubleMap = studentList.stream()
+                .collect(Collectors.groupingBy(Student::getAge, Collectors.groupingBy(Student::getName)));
+
     }
 }

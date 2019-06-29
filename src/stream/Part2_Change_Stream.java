@@ -9,7 +9,7 @@ import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 /**
- * stream类的常用操作
+ * stream类的常用操作1
  * 这个例子适用于绝大多数情
  */
 public class Part2_Change_Stream {
